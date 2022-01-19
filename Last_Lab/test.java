@@ -51,7 +51,7 @@ class test
 {
 	public static void main(String[] args) 
 	{
-		String s = "TestITI";
+		String s = "TestGitHub";
 		// SomeClass::staticMethod
 		String result1 = Utils.transform(s, Utils::makeExciting);
 		System.out.println("\n1 Static "+result1);
