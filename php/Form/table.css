@@ -1,0 +1,42 @@
+.tablestyle{
+    border:3px solid black;
+    width: 40%;
+    text-align: center;
+    margin: 50px auto;
+    letter-spacing: 1px;
+    border-collapse: collapse;
+
+}
+td {
+    border: 2px solid #030303;
+    text-align: center;
+    padding: 8px;
+}
+
+
+.grayrow
+{
+    background-color: beige;
+}
+.header{
+    background-color: chocolate;
+    width: 100%;
+    height: 15%;
+
+
+}
+th[scope="col"] {
+    background-color: #696969;
+    color: #fff;
+    height: 60px;
+    border: #030303;
+    font-size:x-large;
+    border: 2px solid black;
+    border-collapse: collapse;
+    width: 18%;
+
+}
+body{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0%;
+}
