@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3 ScreenShots</title>
+</head>
+<body>
+<video id="video" autoplay></video>
+<button onclick="capture();">Take ScreenShot</button>
+<canvas id="canvas" ></canvas>
+<img id="img" >
+<script>
+  async function startCamera(){
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio:false },)
+          video.srcObject = stream;
+      }
+  }
+  startCamera();
+  function capture() {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      let ctx = canvas.getContext("2d");
+      ctx.drawImage(video, 0, 0);
+      let imgAsStr = canvas.toDataURL("image/webp");
+      console.log(imgAsStr);
+      localStorage.myimage = imgAsStr;
+      img.src = canvas.toDataURL("image/webp");
+  };
+</script>
+</body>
+</html>

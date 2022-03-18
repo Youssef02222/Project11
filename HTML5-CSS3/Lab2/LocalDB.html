@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2 store</title>
+</head>
+<body>
+    <div>
+        <h3>Products</h3>
+        <table border="1">
+                <tr>
+                    <td>ID</td>
+                    <td><input type="text" id="pid"></td>
+
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" id="pname"></td>
+
+                </tr>
+                <tr>
+                    <td>Count</td>
+                    <td><input type="text" id="pcount"></td>
+                </tr>
+                <tr>
+                    <td><button id="add" onclick="insertItem()">ADD</button></td>
+                </tr>
+        </table>
+        <table>
+            <thead>
+               <tr>
+                   <th>ID</th>
+                   <th>Name</th>
+                   <th>Count</th>
+               </tr>
+            </thead>
+            <tbody id="display">
+
+            </tbody>
+        </table>
+    </div>
+<script>
+    let db = window.openDatabase("store","1.0","store",1024*1024*5);
+    db.transaction((tx)=>{
+        tx.executeSql("create table if not exists products (id int primary key,name varchar(200),count varchar(200))");
+        tx.executeSql("insert into products (id,name,count) values (?,?,?)",[1,"pants","2"]);
+        tx.executeSql("insert into products (id,name,count) values (?,?,?)",[2,"shirt","4"]);
+    });
+
+    function readStudents(){
+        db.transaction((tx)=>{
+            tx.executeSql("select * from products",[],(tx,result)=>{
+                let htmlTableBody="";
+                for(let i =0;i<result.rows.length;i++){
+                    let record = result.rows[i];
+                    htmlTableBody+=`<tr>
+                    <td>${record.id}</td>
+                    <td>${record.name}</td>
+                    <td>${record.count}</td>
+                </tr>`;
+                }
+                display.innerHTML = htmlTableBody;
+            })
+        });
+    }
+    function insertItem(){
+        let item = {
+            id: Number(pid.value),
+            name: pname.value,
+            count: pcount.value,
+        }
+        db.transaction((tx)=>{
+            tx.executeSql("insert into products (id,name,count) values (?,?,?)",[item.id,item.name,item.count], (tx,result)=>{
+                readStudents();
+            });
+        });
+    }
+    readStudents();
+</script>
+</body>
+</html>
