@@ -1,0 +1,21 @@
+{
+    "name": "vendor_name/package_name",
+    "description": "This project is for practicing writing php unit tests",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+      {
+        "name": "Youssef",
+        "email": "youssef.ibrahem.2022@gmail.com"
+      }
+    ],
+    "autoload": {
+      "classmap": [
+        "src/"
+      ]
+    },
+    "require-dev": {
+      "phpunit/dbunit": "*",
+        "phpunit/phpunit": "^9.5"
+    }
+  }
